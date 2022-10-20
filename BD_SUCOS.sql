@@ -60,6 +60,32 @@ select * from tbproduto;
 -- atualizar os dados de uma tabela 
 update tbproduto set EMBALAGEM = 'Lata', PRECO_LISTA = 2.46 where PRODUTO = '544931';
 
+update tbproduto set EMBALAGEM  = 'Garrafa' where PRODUTO = '1078680';
+
+-- alterar tabela e adicionar chave primária (identificador unico, atributo determinante)
+alter table tbproduto add primary key (PRODUTO);
+
+select * from tbcliente;
+
+alter table tbcliente add column (DATA_NASCIMENTO date);
+
+
+insert into tbcliente (CPF, NOME, ENDERECO1, ENDERECO2, BAIRRO, CIDADE, ESTADO, CEP, IDADE, SEXO, LIMITE_CREDITO, VOLUME_COMPRA, PRIMEIRA_COMPRA, DATA_NASCIMENTO)
+values
+('00388934505', 'João da Silva', 'Rua Projeta A número 10', '', 'Vila Roman', 'Caratinga', 'AM', '06836001', 30, 'M', 1000.000, 2000, 0, '1989-10-05');
+
+insert into tbcliente (CPF, NOME, ENDERECO1, ENDERECO2, BAIRRO, CIDADE, ESTADO, CEP, IDADE, SEXO, LIMITE_CREDITO, VOLUME_COMPRA, PRIMEIRA_COMPRA, DATA_NASCIMENTO)
+values
+('00123456789', 'Bruno José', 'Rua romana número 70', '', 'Campo limpo', 'São Paulo', 'SP', '01234567', 25, 'M', 10000, 3000, 0, '2001-05-27');
+
+insert into tbcliente (CPF, NOME, ENDERECO1, ENDERECO2, BAIRRO, CIDADE, ESTADO, CEP, IDADE, SEXO, LIMITE_CREDITO, VOLUME_COMPRA, PRIMEIRA_COMPRA, DATA_NASCIMENTO)
+values
+('00987654321', 'Carla Josefina', 'Rua palmas número 95', '', 'Jardim Olinda', 'São Paulo', 'SP', '56438976', 32, 'F', 100000, 4000, 0, '1990-02-05');
+
+
+
+
+
 
 
 
