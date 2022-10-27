@@ -47,5 +47,8 @@ select TIPO, NOME, IDADE, VALOR as 'VALOR ORIGINAL', VENDA as 'VALOR DE VENDA' f
 
 select TIPO, VALOR as 'VALOR ORIGINAL', VENDA as 'VALOR DE VENDA' from Animais;
 
+-- Método mais fácil
+-- update Animais set VENDA = VALOR + VALOR * 0.1;
+
 
 
