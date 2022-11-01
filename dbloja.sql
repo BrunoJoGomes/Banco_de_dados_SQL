@@ -52,3 +52,7 @@ select * from tbFuncionarios;
 
 select * from tbUsuarios;
 
+-- alterando os registros das tabelas 
+update tbUsuarios set senha ='687758698' where codUsu = 2;
+
+select * from tbUsuarios;
