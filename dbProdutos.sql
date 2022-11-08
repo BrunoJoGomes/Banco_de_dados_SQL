@@ -36,3 +36,42 @@ INSERT INTO PRODUTOS ( CODIGO, NOME, TIPO, QUANTIDADE, VALOR ) VALUES ( 10,
 DESC PRODUTOS;
 
 SELECT * FROM PRODUTOS;
+
+-- pesquisa com a clausula where
+-- select nome, tipo from where tipo = 'informatica';
+
+-- busca por codigo
+-- select nome, tipo from where codigo = 5;
+
+-- busca por valor
+-- select * from produtos where valor > 400 and valor < 600;
+
+-- select * from produtos where valor > 400 or valor < 600;
+
+-- select * from produtos where nome = 'morango' or valor < 600;
+
+-- select * from produtos where tipo in('informatica','telefone'); -- buscar todos produtos que são de tipo ou informatica ou telefone
+
+
+-- select * from produtos where valor between 400 and 600;
+
+-- select * from produtos where valor not between 400 and 600;
+
+-- busca por nome 
+-- select * from produtos where nome like '%a';
+-- select * from produtos where tipo not like 't%';
+
+-- atualizar valores
+-- update produtos set valor = valor * 1.10 where tipo = 'digitais';
+-- update produtos set valor = valor * 0.80 where nome like '%u%';
+
+-- update produtos set quantidade = quantidade + 8 where tipo = 'eletronicos';
+-- select * from produtos where tipo = 'eletronicos';
+
+-- update produtos set valor = valor * 1.05 where tipo = 'eletronicos' and valor < 600;
+-- select * from produtos where tipo = 'eletronicos' and valor < 600;
+
+-- query = consulta
+
+-- exercicio
+
