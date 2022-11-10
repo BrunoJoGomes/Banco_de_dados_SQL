@@ -73,5 +73,3 @@ SELECT * FROM PRODUTOS;
 
 -- query = consulta
 
--- exercicio
-

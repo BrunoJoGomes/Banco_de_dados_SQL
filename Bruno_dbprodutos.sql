@@ -46,7 +46,7 @@ select * from produtos where nome like 'f%';
 
 -- 2 -  Aumentar em 50 unidades todos os produtos cujo valor seja maior que 400 e inferior a 600
 
-update produtos set quantidade = quantidade + 50 where valor between 400 and 600;
+update produtos set quantidade = quantidade + 50 where valor > 400 and valor < 600;
 select * from produtos where valor > 400 and valor < 600;
 
 -- 3 -  Aplicar um desconto de 50% (*0.5) em todos os produtos que as unidades de estoque sejam maiores que 300 
