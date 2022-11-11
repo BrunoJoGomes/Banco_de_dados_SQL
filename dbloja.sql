@@ -111,6 +111,8 @@ select * from tbProdutos where descricao like '%n%';
 -- os produtos
 
 -- select distinct descricao from tbprodutos; ele mostrará apenas onde na coluna descrição tiver valores diferentes, por exemplo, 
--- caso 2 tipos de bananas estejam cadastradas com preços diferentes ele mostrará apenas uma vez 
+-- caso 2 tipos de bananas estejam cadastradas com preços diferentes ele mostrará apenas uma vez
+
+ 
 
 

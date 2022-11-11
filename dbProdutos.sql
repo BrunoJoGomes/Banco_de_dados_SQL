@@ -73,3 +73,19 @@ SELECT * FROM PRODUTOS;
 
 -- query = consulta
 
+-- ordenar resultados de pesquisa, ordenaçao
+-- caso não seja especificado qual coluna deve ser ordenada ele ordenara pela primeira coluna
+
+-- select * from produtos order by quantidade; menor para o maior
+
+-- select quantidade from produtos order by quantidade desc; maior para o menor
+
+-- select nome from produtos order by nome; -- vai ordenar pelos nomes de a p/ z
+
+-- delimitador
+-- select * from produtos limit 5;
+
+-- select * from produtos limit 5 order by valor; -- 5 primeiros resultados
+
+-- select * from produtos order by valor limit 5; -- 5 primeiros resultados com valor do menor pro maior
+
