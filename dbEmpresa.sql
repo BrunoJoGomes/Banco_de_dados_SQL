@@ -31,21 +31,58 @@ primary key(codUsu),
 foreign key(codFunc)references tbFuncionarios(codFunc)
 );
 
+create table tbFornecedores(
+codForn int not null auto_increment,
+nome varchar(100),
+cnpj char(18),
+inscrEst char(15),
+email varchar(100),
+telefone char(10),
+primary key(codForn)
+);
+
 -- para acessar os produtos é preciso de um usuario
+-- para existir um produto é preciso de um fornecedor
 
 create table tbProdutos(
 codProd int not null auto_increment, -- campo obrigatorio
 descricao varchar(100),
 quantidade int default 0 check(quantidade >= 0), -- caso nenhum valor seja colocado, o campo assumira valor 0.  Não será permitido valores menores que 0
 valor decimal(9,2) check(valor >= 0),
-codUsu int not null,
+codForn int not null,
 primary key(codProd),
-foreign key (codUsu)references tbUsuarios(codUsu)
+foreign key(codForn)references tbFornecedores(codForn) 
+);
+
+create table tbClientes(
+codCli int not null auto_increment,
+nome varchar(100),
+email varchar(100),
+cpf char(14) not null unique,
+telefone char(10),
+primary key(codCli)
+);
+
+create table tbVendas(
+codVend int not null auto_increment,
+codProd int not null,
+codCli int not null,
+codUsu int not null,
+dataVenda date,
+horaVenda time,
+quantidade int,
+primary key(codVend),
+foreign key(codProd)references tbProdutos(codProd),
+foreign key(codCli)references tbClientes(codCli),
+foreign key(codUsu)references tbUsuarios(codUsu)
 );
 
 desc tbProdutos;
 desc tbUsuarios;
 desc tbFuncionarios;
+desc tbFornecedores;
+desc tbClientes;
+desc tbVendas;
 
 -- inserçoes sempre no final do codigo
 -- os inserts nao devem ser feitos nas tabelas dependentes antes da tabela pai
@@ -62,14 +99,24 @@ values('paulo.msilva','123456',1);
 insert into  tbUsuarios(nome,senha,codFunc)
 values('laura.jsantos','687954',2);
 
-insert into tbProdutos(descricao,quantidade,valor,codUsu)
+insert into tbFornecedores(nome,cnpj,inscrEst,email,telefone)
+values('Fabricantes S/A','25.147.235.0001/38','253.235.147-110','sac@empresa.com.br','97485-8574');
+
+insert into tbProdutos(descricao,quantidade,valor,codForn)
 values('Banana',12,10.35,1);
 
-insert into tbProdutos(descricao,quantidade,valor,codUsu)
-values('Manga',15,20.00,2);
+insert into tbProdutos(descricao,quantidade,valor,codForn)
+values('Manga',15,20.00,1);
 
-select * from tbProdutos;
-select * from tbUsuarios;
+insert into tbClientes(nome,email,cpf,telefone)
+values ('Maria Josefina','maria@hotmail.com','456.455.765.89','95768-0925');
+
+insert into tbVendas(codProd,codCli,codUsu,dataVenda,horaVenda,quantidade)
+values(2,1,2,'2022/11/17','15:42:02',10);
+
 select * from tbFuncionarios;
-
-
+select * from tbUsuarios;
+select * from tbFornecedores;
+select * from tbProdutos;
+select * from tbClientes;
+select * from tbVendas;
