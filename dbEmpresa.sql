@@ -106,7 +106,7 @@ insert into tbProdutos(descricao,quantidade,valor,codForn)
 values('Banana',12,10.35,1);
 
 insert into tbProdutos(descricao,quantidade,valor,codForn)
-values('Manga',15,20.00,1);
+values('Morango',15,20.00,1);
 
 insert into tbClientes(nome,email,cpf,telefone)
 values ('Maria Josefina','maria@hotmail.com','456.455.765.89','95768-0925');
@@ -120,3 +120,40 @@ select * from tbFornecedores;
 select * from tbProdutos;
 select * from tbClientes;
 select * from tbVendas;
+
+
+-- fazemos uma pesquisa com inner join quando queremos exibir um campo que nao existe em uma das tabelas, mas elas estão diretamente ligadas
+select prod.descricao, vend.quantidade from tbVendas as vend inner join tbProdutos as prod on vend.codProd = prod.codProd;
+
+-- serao exibidos os nomes dos produtos que foram vendidos e suas respectivas quantidades vendidas
+-- o alias foi usado para diferenciar o campo codProd de cada tabela, pois ele existe em ambas
+
+select prod.descricao,forn.nome from tbProdutos as prod inner join tbFornecedores as forn on prod.codForn = forn.codForn; 
+
+select prod.descricao,cli.nome,usu.nome from tbVendas as vend inner join tbProdutos as prod on vend.codProd = prod.codProd
+inner join tbClientes as cli on vend.codCli = cli.codCli
+inner join tbUsuarios as usu on vend.codUsu = usu.codUsu;
+
+select prod.descricao, cli.nome, usu.nome from tbVendas as vend
+inner join tbProdutos as prod on vend.codProd = prod.codProd
+inner join tbClientes as cli on vend.codCli = cli.codCli
+inner join tbUsuarios as usu on vend.codusu = usu.codusu;
+
+
+select prod.descricao as 'Nome do Produto',
+cli.nome as 'Nome do Cliente', forn.nome as 'Nome do Fornecedor' 
+from tbVendas as vend
+inner join tbProdutos as prod on vend.codProd = prod.codProd 
+inner join tbClientes as cli on cli.codCli = vend.codCli
+inner join tbFornecedores as forn on prod.codForn = forn.codForn
+where vend.codProd = 3;
+
+
+-- Qual o nome do funcinário que vendeu o produto morango e quantidade da venda e qual é o fornecedor desse produto. Pergunta realizada para tabela de vendas
+
+select func.nome as 'Nome do funcionario', prod.descricao as 'Nome do Produto',vend.quantidade as 'Quantidade da venda',forn.nome as 'Nome do Fornecedor' from tbVendas as vend
+inner join tbProdutos as prod on vend.codProd = prod.codProd
+inner join tbFornecedores as forn on prod.codForn = forn.codForn  
+inner join tbUsuarios as usu on vend.codUsu = usu.codUsu
+inner join tbFuncionarios as func on usu.codFunc = func.codFunc
+where prod.codProd = 2;
