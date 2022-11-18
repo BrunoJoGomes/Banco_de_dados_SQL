@@ -48,7 +48,7 @@ primary key(cod_cli),
 foreign key(cod_cid) references CIDADES(cod_cid)
 );
 
-create table CONJUGUES(
+create table CONJUGES(
 cod_conj int not null auto_increment,
 cod_cli int not null,
 nome_conj varchar(50) not null,
@@ -104,3 +104,70 @@ cod_tit int not null,
 qtd_cd int not null check(qtd_cd >= 1),
 val_cd decimal (9,2) not null check(val_cd >= 0)
 );
+
+create table TITULOS_ARTISTA(
+cod_tit int not null,
+cod_art int not null,
+foreign key(cod_tit)references TITULOS(cod_tit),
+foreign key(cod_art)references ARTISTAS(cod_art)
+);
+
+-- Agora insira os seguintes dados nas respectivas tabelas:
+insert into ARTISTAS(nome_art)values('MARISA MONTE');
+insert into ARTISTAS(nome_art)values('GILBERTO GIL');
+insert into ARTISTAS(nome_art)values('CAETANO VELOSO');
+insert into ARTISTAS(nome_art)values('MILTON NASCIMENTO');
+insert into ARTISTAS(nome_art)values('LEGIÃO URBANA');
+insert into ARTISTAS(nome_art)values('THE BEATLES');
+insert into ARTISTAS(nome_art)values('RITA LEE');
+
+insert into GRAVADORAS(nome_grav)values
+('POLYGRAM'),
+('EMI'),
+('SOM LIVRE'),
+('SOM MUSIC');
+
+insert into CATEGORIAS(nome_cat)values
+('MPB'),
+('TRILHA SONORA'),
+('ROCK INTERNACIONAL'),
+('ROCK NACIONAL');
+
+insert into ESTADOS(sigla_est,nome_est)values
+('SP','SÃO PAULO'),
+('MG','MINAS GERAIS'),
+('RJ','RIO DE JANEIRO'),
+('ES','ESPIRITO SANTO');
+
+insert into CIDADES(sigla_est,nome_cid)values
+('SP','SÃO PAULO'),
+('SP','SOROCABA'),
+('SP','JUNDIAÍ'),
+('SP','AMERICANA'),
+('SP','ARARAQUARA'),
+('MG','OURO PRETO'),
+('ES','CHACHOEIRA DO ITAPEMIRIM');
+
+insert into CLIENTES(cod_cid,nome_cli,end_cli,renda_cli,sexo_cli)values
+(1,'JOSÉ NOGUEIRA','RUA A',1500.00,'M'),
+(1,'ANJELO PEREIRA','RUA B',2000.00,'M'),
+(1,'ALÉM MAR PARANHOS','RUA C',1500.00,'M'),
+(1,'CATARINA SOUZA','RUA D',892.00,'F'),
+(1,'VAGNER COSTA','RUA E',950.00,'M'),
+(2,'ANTENOR DA COSTA','RUA F',1582.00,'M'),
+(2,'MARIA AMÉLIA DE SOUZA','RUA G',1152.00,'F'),
+(2,'PAULO ROBERTO SILVA','RUA H',3250.00,'M'),
+(3,'FÁTIMA SOUZA','RUA I',1632.00,'F'),
+(3,'JOEL DA ROCHA','RUA J',2000.00,'M');
+
+insert into CONJUGES(cod_cli,nome_conj,renda_conj,sexo_conj)values
+(1,'CARLA NOGUEIRA',2500.00,'F'),
+(2,'EMILIA PEREIRA',5500.00,'F'),
+(6,'ALTIVA DA COSTA',3000.00,'F'),
+(7,'CARLOS DE SOUZA',3250.00,'M');
+
+insert into FUNCIONARIOS(nome_func,end_func,sal_func,sex_func)values
+('VÂNIA GABRIELA PEREIRA','RUA A',2500.00,'F'),
+('NORBERTO PEREIRA DA SILVA','RUA B',300.00,'M'),
+('OLAVO LINHARES','RUA C',580.00,'M'),
+('PAULA DA SILVA','RUA D',3000.00,'F');
