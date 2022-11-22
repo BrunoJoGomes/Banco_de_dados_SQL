@@ -157,3 +157,4 @@ inner join tbFornecedores as forn on prod.codForn = forn.codForn
 inner join tbUsuarios as usu on vend.codUsu = usu.codUsu
 inner join tbFuncionarios as func on usu.codFunc = func.codFunc
 where prod.codProd = 2;
+
