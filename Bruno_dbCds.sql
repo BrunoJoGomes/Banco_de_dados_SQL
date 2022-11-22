@@ -1,3 +1,5 @@
+drop database db_cds;
+
 -- Crie uma database com o nome DB_CDS
 create database db_cds;
 
@@ -53,6 +55,7 @@ cod_conj int not null auto_increment,
 cod_cli int not null,
 nome_conj varchar(50) not null,
 renda_conj decimal(9,2) not null default 0 check(renda_conj >= 0),
+sexo_conj char(1) not null default 'F' check(sexo_conj in('F','M')),
 primary key(cod_conj),
 foreign key(cod_cli) references CLIENTES(cod_cli)
 );
@@ -63,10 +66,10 @@ nome_func varchar(50) not null,
 end_func varchar(100) not null,
 sal_func decimal(9,2) not null default 0 check(sal_func >= 0),
 sex_func char(1) not null default 'F' check(sex_func in('F','M')),
-primary key(cod_func),
+primary key(cod_func)
 ); 
 
-create table DEPENDENTE(
+create table DEPENDENTES(
 cod_dep int not null auto_increment,
 cod_func int not null,
 nome_dep varchar(100) not null,
@@ -102,7 +105,10 @@ create table TITULOS_PEDIDO(
 num_ped int not null,
 cod_tit int not null,
 qtd_cd int not null check(qtd_cd >= 1),
-val_cd decimal (9,2) not null check(val_cd >= 0)
+val_cd decimal (9,2) not null check(val_cd >= 0),
+primary key(num_ped,cod_tit),
+foreign key(num_ped) references PEDIDOS(num_ped),
+foreign key(cod_tit) references TITULOS(cod_tit)
 );
 
 create table TITULOS_ARTISTA(
@@ -146,7 +152,7 @@ insert into CIDADES(sigla_est,nome_cid)values
 ('SP','AMERICANA'),
 ('SP','ARARAQUARA'),
 ('MG','OURO PRETO'),
-('ES','CHACHOEIRA DO ITAPEMIRIM');
+('ES','CACHOEIRA DO ITAPEMIRIM');
 
 insert into CLIENTES(cod_cid,nome_cli,end_cli,renda_cli,sexo_cli)values
 (1,'JOSÉ NOGUEIRA','RUA A',1500.00,'M'),
@@ -170,4 +176,66 @@ insert into FUNCIONARIOS(nome_func,end_func,sal_func,sex_func)values
 ('VÂNIA GABRIELA PEREIRA','RUA A',2500.00,'F'),
 ('NORBERTO PEREIRA DA SILVA','RUA B',300.00,'M'),
 ('OLAVO LINHARES','RUA C',580.00,'M'),
-('PAULA DA SILVA','RUA D',3000.00,'F');
+('PAULA DA SILVA','RUA D',3000.00,'F'),
+('ROLANDO ROCHA','RUA E',2000.00,'M');
+
+insert into DEPENDENTES(cod_func,nome_dep,sexo_dep)values
+(1,'ANA PEREIRA','F'),
+(1,'ROBERTO PEREIRA','M'),
+(1,'CELSO PEREIRA','M'),
+(3,'BRISA LINHARES','F'),
+(3,'MARI SOL LINHARES','F'),
+(4,'SONIA DA SILVA','F');
+
+
+insert into TITULOS(cod_cat,cod_grav,nome_cd,val_cd,qtd_estq)values
+(1,1,'TRIBALISTAS',30.00,1500),
+(1,2,'TROPICÁLIA',50.00,500),
+(1,1,'AQUELE ABRAÇO',50.00,600),
+(1,2,'REFAZENDA',60.00,1000),
+(1,3,'TOTALMENTE DEMAIS',50.00,2000),
+(1,3,'TRAVESSIA',55.00,500),
+(1,2,'COURAGE',30.00,200),
+(4,3,'LEGIÃO URBANA',20.00,100),
+(3,2,'THE BEATLES',30.00,300),
+(4,1,'RITA LEE',30.00,500);
+
+
+insert into PEDIDOS(cod_cli,cod_func,data_ped,val_ped)values
+(1,2,'02/05/02',1500.00),
+(3,4,'02/05/02',50.00),
+(4,5,'02/06/02',100.00),
+(1,4,'02/02/03',200.00),
+(7,5,'02/03/03',300.00),
+(4,4,'02/03/03',100.00),
+(5,5,'02/03/03',50.00),
+(8,2,'02/03/03',50.00),
+(2,2,'02/03/03',2000.00),
+(7,1,'02/03/03',3000.00);
+
+insert into TITULOS_ARTISTA(cod_tit,cod_art)values
+(1,1),
+(2,2),
+(3,2),
+(4,2),
+(5,3),
+(6,4),
+(7,4),
+(8,5),
+(9,6),
+(10,7);
+
+insert into TITULOS_PEDIDO(num_ped,cod_tit,qtd_cd,val_cd)values
+(1,1,2,30.00),
+(1,2,3,20.00),
+(2,1,1,50.00),
+(2,2,3,30.00),
+(3,1,2,40.00),
+(4,2,3,20.00),
+(5,1,2,25.00),
+(6,2,3,30.00),
+(6,3,1,35.00),
+(7,4,2,55.00),
+(8,1,4,60.00),
+(9,2,3,15.00),
+(10,7,2,15.00);
